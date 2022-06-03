@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<title>
+			Register
+		</title>
+		<h2>Registration Form
+		</h2>
+
+		<style>
+			body {
+				font-family: Calibri, Helvetica, sans-serif;
+			}
+			button {
+				background-color: #336BFF;
+				width: 40%;
+				color: black;
+				padding: 6px;
+				border: none;
+				cursor: pointer;
+				margin-left: 50px;
+			}
+			form {
+				border: 5px solid #f1f1f1;
+				padding: 20px;
+				margin-left: auto;
+				margin-right: auto;
+				text-align: left;
+				width: 30%;
+			}
+			h2 {
+				padding: 8px;
+				text-align: center;
+			}
+			p {
+				text-align: center;
+			}
+			label {
+				margin-left: 120px
+			}
+			input {
+				margin-left: 120px
+			}
+		</style>
+	</head>
+	<body class="text-center" style="margin-left:140px;background-color:lightblue;">
+		<form class="form-registerform" method="post" action="/register">
+            {% csrf_token %}
+			<img class="mb-4" src="/static/logo.png" width="150" height="150" style="margin-left:140px">
+			<h2 class="h3 mb-3 font-weight-normal" style="margin-left:50px">Please fill in this form
+				<br>
+				to create an account in
+				<br>
+				Noddy Icecreams</h2>
+
+			<label for="username" class="sr-only">Username</label>
+			<br>
+			<input type="username" id="username" name="username" class="form-control" required autofocus>
+			<br>
+			<label for="email" class="sr-only">Email</label>
+			<br>
+			<input type="email" id="email" name="email" class="form-control" required autofocus>
+			<br>
+			<label for="password1" class="sr-only">Password</label>
+			<br>
+			<input type="password1" id="password1" name="password1" class="form-control" required>
+			<br>
+			<label for="password2" class="sr-only">Confirm password</label>
+			<br>
+			<input type="password2" id="password2" name="password2" class="form-control" required>
+			<br>
+			<br>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-left:130px; font-size:medium; background-color:pink">Register</button>
+			<br><br>
+			<br>
+
+		</form>
+
+
+	</body>
+</html>
