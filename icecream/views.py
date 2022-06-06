@@ -69,3 +69,6 @@ def showuserlist(request):
     display = User.objects.all()
     return render(request, "userslist.html", {"userlist": display})
 
+def showuserprofile(request):
+    # display = User.objects.all()
+    return render(request, "userprofile.html")
