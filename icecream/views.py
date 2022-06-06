@@ -1,20 +1,29 @@
+from multiprocessing import context
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, HttpResponse
-from django.contrib.auth import logout, authenticate,login
-from django.shortcuts import  render, redirect
-from .forms import NewUserForm
+from django.contrib.auth import logout, authenticate, login
+from django.shortcuts import render, redirect
+from .forms import RegisterUserForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from icecream.models import userlist
 
 # Create your views here.
+
+
 def index(request):
     if request.user.is_anonymous:
         return redirect("/login")
-    return render(request,"index.html")
+    return render(request, "index.html")
+
 
 def home(request):
+    # DOUBT DOUBT DOUBT
+    # AFTER THE REGSTRATION IT SENDS TO LOGIN FORM
     if request.user.is_anonymous:
-        return redirect("/login")
-    return render(request,"home.html")
+       return redirect("/login")
+    return render(request, "home.html")
+
 
 def loginuser(request):
     if request.user.is_authenticated:
@@ -25,26 +34,38 @@ def loginuser(request):
             upassword = request.POST.get('password')
             user = authenticate(username=uname, password=upassword)
             if user is not None:
-                login(request,user)
+                login(request, user)
                 return redirect("/home")
             else:
-                return render(request,"login.html")
-        return render(request,"login.html")
+                return render(request, "login.html")
+        return render(request, "login.html")
 
 
 def logoutuser(request):
     logout(request)
     return redirect("/login")
 
+
 def registeruser(request):
-	if request.method == "POST":
-		form = NewUserForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			login(request, user)
-			messages.success(request, "Registration successful." )
-			return redirect("/home")
-		messages.error(request, "Unsuccessful registration. Invalid information.")
-	form = NewUserForm()
-	return render(request, template_name="register.html", context={"register_form":form})
-    
+    if request.user.is_authenticated:
+        return redirect("/home")
+    else:
+        form = RegisterUserForm()
+
+        if request.method == "POST":
+            form = RegisterUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request,"Registered successfully")
+                return redirect("/login")
+            else:
+                messages.error(request,form.errors)
+
+
+        context = {'form': form}
+        return render(request, "register.html", context)
+
+def showuserlist(request):
+    display = User.objects.all()
+    return render(request, "userslist.html", {"userlist": display})
+
