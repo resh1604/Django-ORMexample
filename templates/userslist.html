@@ -23,20 +23,23 @@
         <table name="userlisttable" class="table table-hover table-bordered">
             <thead>
                 <tr>
+                    <th scope="col">UserID</th>
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
                     <th scope="col">Firstname</th>
                     <th scope="col">Lastname</th>
-                    <th scope="col">Company</th>
+                    <th scope="col">Age</th>
                 </tr>
             </thead>
             <tbody>
-                {%for result in userlist%}
+                {%for result in data %}
                 <tr>
-                    <td scope="row">{{result.username}} </td>
+                    <td scope="row">{{result.id}} </td>
+                    <td>{{result.username}} </td>
                     <td>{{result.email}}</td>
                     <td>{{result.firstname}}</td>
                     <td>{{result.lastname }}</td>
+                    <td>{{result.age }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

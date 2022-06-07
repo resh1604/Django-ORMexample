@@ -64,7 +64,7 @@
 	{% endfor %}
 	{% endif %}
 
-	<form class="form-registerform" method="POST" action="/registeruser">
+	<form class="form-registerform" method="POST" action="/testregister">
 		{% csrf_token %}
 		{% comment %} {{form.as_p}}
 		<input type="submit" name="registersubmit"> {% endcomment %}
