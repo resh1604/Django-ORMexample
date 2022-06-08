@@ -51,9 +51,11 @@ def showuserlist(request):
     display = Userdata.objects.all()
     return render(request, "userslist.html", {"data": display})
 
+
 def showuserprofile(request):
     user = request.user.id
     return render(request, "userprofile.html",{'use':user})
+
 
 #FIRST- we will check if there is any POST data coming or not
 #SECOND - we will put all post data into the variable form

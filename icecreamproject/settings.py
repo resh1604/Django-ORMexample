@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'icecream.apps.IcecreamConfig',
+    'icecream.apps.IcecreamConfig', #Manually added
 ]
 
 MIDDLEWARE = [
@@ -51,6 +51,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'icecreamproject.urls'
+
+AUTH_USER_MODEL = 'icecream.TestUserData'  #MANUALLY ADDED
+
+SILENCED_SYSTEM_CHECKS = ['auth.E003','auth.W004']  #MANUALLY ADDED
 
 TEMPLATES = [
     {
